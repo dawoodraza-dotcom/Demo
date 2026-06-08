@@ -1,0 +1,2338 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex | Divine Education Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --divine-gold: #d4af37;
+            --divine-gold-light: #f4e4bc;
+            --divine-gold-dark: #b8941f;
+            --divine-dark: #0a0e1a;
+            --divine-darker: #060812;
+            --divine-navy: #121b2e;
+            --divine-navy-light: #1a2540;
+            --divine-text: #e2e8f0;
+            --divine-text-muted: #94a3b8;
+            --divine-white: #ffffff;
+            --radius: 16px;
+            --radius-lg: 24px;
+            --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.15);
+            --shadow-divine: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --max-width: 1280px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--divine-dark);
+            color: var(--divine-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--divine-darker);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--divine-gold-dark);
+            border-radius: 4px;
+        }
+
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+
+        .display {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+        }
+
+
+        .nav.scrolled {
+            background: rgba(10, 14, 26, 0.95);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--divine-gold);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--divine-dark);
+            font-weight: 900;
+            font-size: 1.25rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--divine-white);
+            letter-spacing: -0.02em;
+        }
+
+
+        .logo-text span {
+            color: var(--divine-gold);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--divine-text-muted);
+            font-weight: 500;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--divine-gold);
+            transition: width 0.3s ease;
+        }
+
+
+        .nav-links a:hover {
+            color: var(--divine-gold);
+        }
+
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+        .nav-cta {
+            display: none;
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            padding: 0.75rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+
+        .nav-cta:hover {
+            background: var(--divine-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+
+        .mobile-menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--divine-gold);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--divine-darker);
+            padding: 6rem 2rem 2rem;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+
+        .mobile-menu a {
+            display: block;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            text-decoration: none;
+            color: var(--divine-text);
+            font-weight: 600;
+            font-size: 1.25rem;
+            transition: color 0.2s;
+        }
+
+
+        .mobile-menu a:hover {
+            color: var(--divine-gold);
+        }
+
+
+        .mobile-menu .mobile-cta {
+            margin-top: 2rem;
+            display: block;
+            text-align: center;
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--divine-darker);
+        }
+
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(18, 27, 46, 0.8) 0%, transparent 50%);
+        }
+
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+        }
+
+
+        .hero-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 9rem 1.5rem 5rem;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            gap: 4rem;
+            align-items: center;
+        }
+
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 0.625rem 1.25rem;
+            border-radius: 100px;
+            color: var(--divine-gold);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--divine-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--divine-gold);
+            animation: divinePulse 2s infinite;
+        }
+
+
+        @keyframes divinePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+
+        .hero h1 {
+            font-size: clamp(2.75rem, 6vw, 5rem);
+            color: var(--divine-white);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+
+
+        .hero h1 .display {
+            color: var(--divine-gold);
+            font-style: italic;
+        }
+
+
+        .hero p {
+            color: var(--divine-text-muted);
+            font-size: 1.125rem;
+            max-width: 560px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+
+        .hero-stat {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+
+        .hero-stat-number {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--divine-gold);
+            display: block;
+            line-height: 1;
+        }
+
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            color: var(--divine-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 0.5rem;
+        }
+
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.125rem 2.25rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+
+        .btn-primary {
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+
+        .btn-primary:hover {
+            background: var(--divine-gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+        }
+
+
+        .btn-outline {
+            background: transparent;
+            color: var(--divine-gold);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--divine-gold);
+            transform: translateY(-3px);
+        }
+
+
+        .hero-visual {
+            position: relative;
+            perspective: 1000px;
+        }
+
+
+        .hero-card {
+            background: rgba(18, 27, 46, 0.6);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            position: relative;
+            transform: rotateY(-5deg) rotateX(5deg);
+            transition: transform 0.6s ease;
+            box-shadow: var(--shadow-divine);
+        }
+
+
+        .hero-card:hover {
+            transform: rotateY(0) rotateX(0);
+        }
+
+
+        .hero-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+
+        .hero-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--divine-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--divine-dark);
+            font-weight: 800;
+            font-size: 1.25rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+
+        .hero-card-info h4 {
+            color: var(--divine-white);
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+
+        .hero-card-info p {
+            color: var(--divine-text-muted);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+
+        .hero-progress {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+
+        .progress-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.625rem;
+        }
+
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            color: var(--divine-text);
+            font-size: 0.9375rem;
+            font-weight: 600;
+        }
+
+
+        .progress-bar {
+            height: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 100px;
+            background: var(--divine-gold);
+            animation: progressGrow 2.5s ease-out forwards;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+
+        @keyframes progressGrow {
+            from { width: 0; }
+        }
+
+
+        .floating-elements {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+
+        .float-card {
+            position: absolute;
+            background: rgba(18, 27, 46, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow-divine);
+            animation: floatDivine 7s ease-in-out infinite;
+            backdrop-filter: blur(20px);
+        }
+
+
+        .float-card:nth-child(1) {
+            top: -30px;
+            right: -20px;
+            animation-delay: 0s;
+        }
+
+
+        .float-card:nth-child(2) {
+            bottom: 30px;
+            left: -30px;
+            animation-delay: 3s;
+        }
+
+
+        @keyframes floatDivine {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+
+        .float-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+
+        .float-card:nth-child(1) .float-card-icon {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--divine-gold);
+        }
+
+
+        .float-card:nth-child(2) .float-card-icon {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--divine-gold-light);
+        }
+
+
+        .float-card-text {
+            font-size: 0.75rem;
+            color: var(--divine-text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+
+        .float-card-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--divine-gold);
+        }
+
+
+        /* Section Styles */
+        section {
+            padding: 6rem 1.5rem;
+            position: relative;
+        }
+
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 4rem;
+        }
+
+
+        .section-label {
+            display: inline-block;
+            color: var(--divine-gold);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+
+        .section-label::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--divine-gold);
+            margin: 0.75rem auto 0;
+            border-radius: 2px;
+        }
+
+
+        .section-title {
+            font-size: clamp(2.25rem, 4vw, 3.5rem);
+            color: var(--divine-white);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+
+        .section-desc {
+            color: var(--divine-text-muted);
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+
+        /* About Section */
+        .about {
+            background: var(--divine-navy);
+        }
+
+
+        .about-grid {
+            display: grid;
+            gap: 4rem;
+            align-items: center;
+        }
+
+
+        .about-visual {
+            position: relative;
+        }
+
+
+        .about-image {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+
+        .about-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(212, 175, 55, 0.1);
+            mix-blend-mode: overlay;
+        }
+
+
+        .about-experience {
+            position: absolute;
+            bottom: -25px;
+            right: -15px;
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-glow);
+            border: 3px solid var(--divine-dark);
+        }
+
+
+        .about-experience-number {
+            font-size: 3rem;
+            font-weight: 900;
+            display: block;
+            line-height: 1;
+        }
+
+
+        .about-experience-text {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--divine-white);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+
+        .about-content > p {
+            color: var(--divine-text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            font-size: 1.0625rem;
+        }
+
+
+        .about-features {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: var(--radius);
+            transition: all 0.3s;
+        }
+
+
+        .about-feature:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(5px);
+        }
+
+
+        .about-feature-icon {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--divine-gold);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+
+        .about-feature-text h4 {
+            color: var(--divine-white);
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+        }
+
+
+        .about-feature-text p {
+            color: var(--divine-text-muted);
+            font-size: 0.9375rem;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+
+        /* Services Section */
+        .services {
+            background: var(--divine-dark);
+        }
+
+
+        .services-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+
+        .service-card {
+            background: rgba(18, 27, 46, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--divine-gold);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+
+        .service-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-8px);
+            background: rgba(18, 27, 46, 0.8);
+        }
+
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+
+        .service-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+        }
+
+
+        .service-card:hover .service-icon {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+
+        .service-card h3 {
+            color: var(--divine-white);
+            margin-bottom: 1rem;
+            font-size: 1.375rem;
+        }
+
+
+        .service-card p {
+            color: var(--divine-text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.625rem;
+            margin-top: 1.5rem;
+        }
+
+
+        .service-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--divine-gold);
+            transition: all 0.2s;
+        }
+
+
+        .service-tag:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-2px);
+        }
+
+
+        /* Pricing Section */
+        .pricing {
+            background: var(--divine-navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+
+        .pricing-grid {
+            display: grid;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .pricing-card {
+            background: rgba(18, 27, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.25);
+            box-shadow: var(--shadow-glow);
+        }
+
+
+        .pricing-card.featured {
+            background: rgba(212, 175, 55, 0.08);
+            border: 2px solid var(--divine-gold);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+
+        .pricing-card.featured:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+
+        .pricing-name {
+            color: var(--divine-white);
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+
+        .pricing-desc {
+            color: var(--divine-text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+
+        .pricing-price {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+
+        .pricing-price .currency {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--divine-gold);
+            vertical-align: top;
+        }
+
+
+        .pricing-price .amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--divine-white);
+            line-height: 1;
+        }
+
+
+        .pricing-price .period {
+            color: var(--divine-text-muted);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 0;
+            color: var(--divine-text-muted);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9375rem;
+        }
+
+
+        .pricing-feature::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--divine-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+
+        .pricing-btn {
+            width: 100%;
+            padding: 1.125rem;
+            border-radius: var(--radius);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            background: transparent;
+            color: var(--divine-gold);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+
+        .pricing-btn:hover {
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            border-color: var(--divine-gold);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+
+        .pricing-card.featured .pricing-btn {
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+        }
+
+
+        .pricing-card.featured .pricing-btn:hover {
+            background: var(--divine-gold-light);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+        }
+
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--divine-dark);
+        }
+
+
+        .testimonials-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+
+        .testimonial-card {
+            background: rgba(18, 27, 46, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+        }
+
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            color: rgba(212, 175, 55, 0.1);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+
+        .testimonial-stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+
+        .testimonial-stars span {
+            color: var(--divine-gold);
+            font-size: 1.25rem;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+
+        .testimonial-text {
+            color: var(--divine-text);
+            font-size: 1.0625rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+
+        .testimonial-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+
+        .testimonial-info h4 {
+            color: var(--divine-white);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+
+        .testimonial-info p {
+            color: var(--divine-text-muted);
+            font-size: 0.875rem;
+        }
+
+
+        /* Contact Section */
+        .contact {
+            background: var(--divine-navy);
+            position: relative;
+        }
+
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+
+        .contact-grid {
+            display: grid;
+            gap: 4rem;
+        }
+
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            color: var(--divine-white);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+
+        .contact-info > p {
+            color: var(--divine-text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.0625rem;
+            line-height: 1.8;
+        }
+
+
+        .contact-methods {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.25rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: var(--radius);
+            transition: all 0.3s;
+        }
+
+
+        .contact-method:hover {
+            border-color: rgba(212, 175, 55, 0.25);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+
+        .contact-method-icon {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--divine-gold);
+        }
+
+
+        .contact-method-text h4 {
+            color: var(--divine-white);
+            margin-bottom: 0.375rem;
+            font-size: 1.125rem;
+        }
+
+
+        .contact-method-text p {
+            color: var(--divine-text-muted);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+
+        .contact-method-text a {
+            color: var(--divine-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+
+        .contact-method-text a:hover {
+            color: var(--divine-gold-light);
+        }
+
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.875rem;
+            background: #25d366;
+            color: var(--divine-white);
+            padding: 1.125rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.0625rem;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px -10px rgba(37, 211, 102, 0.4);
+            border: 2px solid transparent;
+        }
+
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -10px rgba(37, 211, 102, 0.5);
+            background: #22c55e;
+        }
+
+
+        .contact-form-wrapper {
+            background: rgba(18, 27, 46, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-divine);
+            backdrop-filter: blur(20px);
+        }
+
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--divine-white);
+            margin-bottom: 0.625rem;
+            letter-spacing: 0.02em;
+        }
+
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(212, 175, 55, 0.15);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: rgba(10, 14, 26, 0.5);
+            color: var(--divine-text);
+        }
+
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--divine-text-muted);
+        }
+
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--divine-gold);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+            background: rgba(10, 14, 26, 0.8);
+        }
+
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+
+        .form-submit {
+            width: 100%;
+            padding: 1.125rem;
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 800;
+            font-size: 1.0625rem;
+            cursor: pointer;
+            transition: all 0.4s;
+            letter-spacing: 0.02em;
+        }
+
+
+        .form-submit:hover {
+            background: var(--divine-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+
+        .form-success {
+            display: none;
+            background: rgba(37, 211, 102, 0.1);
+            color: #4ade80;
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            text-align: center;
+            font-weight: 700;
+            border: 1px solid rgba(37, 211, 102, 0.2);
+            margin-top: 1rem;
+        }
+
+
+        .form-success.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        /* Footer */
+        .footer {
+            background: var(--divine-darker);
+            color: var(--divine-text);
+            padding: 5rem 1.5rem 2.5rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+
+        .footer-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+
+        .footer-brand .logo-text {
+            color: var(--divine-white);
+        }
+
+
+        .footer-brand p {
+            color: var(--divine-text-muted);
+            margin-top: 1.25rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+
+        .footer-links h4 {
+            color: var(--divine-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+
+        .footer-links li {
+            margin-bottom: 0.875rem;
+        }
+
+
+        .footer-links a {
+            color: var(--divine-text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9375rem;
+            display: inline-block;
+        }
+
+
+        .footer-links a:hover {
+            color: var(--divine-gold);
+            transform: translateX(5px);
+        }
+
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+
+        .footer-bottom p {
+            color: var(--divine-text-muted);
+            font-size: 0.875rem;
+        }
+
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--divine-gold);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+
+        .footer-social a:hover {
+            background: var(--divine-gold);
+            color: var(--divine-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Responsive */
+        @media (min-width: 640px) {
+            .hero-stats {
+                gap: 3rem;
+            }
+            .hero-stat-number {
+                font-size: 2.75rem;
+            }
+            section {
+                padding: 7rem 2rem;
+            }
+        }
+
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            .nav-cta {
+                display: inline-flex;
+            }
+            .mobile-menu-btn {
+                display: none;
+            }
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                padding: 11rem 2rem 7rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+                align-items: center;
+            }
+        }
+
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">A</div>
+                <div class="logo-text">Apex <span>School</span></div>
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#services">Programs</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#testimonials">Results</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="#contact" class="nav-cta">Enroll Now</a>
+            <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#services">Programs</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Results</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="mobile-cta">Enroll Now</a>
+    </div>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Admissions Open for 2025</div>
+                <h1>Where <span class="display">Excellence</span> Becomes Habit</h1>
+                <p>Karachi's premier tuition center for Mathematics, Science, and English. Transforming students into scholars since 2013. Located in the heart of Model Colony.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">98%</span>
+                        <span class="hero-stat-label">Grade Improvement</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">850+</span>
+                        <span class="hero-stat-label">Students Mentored</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">12</span>
+                        <span class="hero-stat-label">Years of Trust</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        Book Free Assessment
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <a href="#services" class="btn btn-outline">Explore Programs</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <div class="hero-avatar">AF</div>
+                        <div class="hero-card-info">
+                            <h4>Aisha Farooq</h4>
+                            <p>Matriculation Student</p>
+                        </div>
+                    </div>
+                    <div class="hero-progress">
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>Mathematics</span>
+                                <span>96%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 96%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>Physics</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>Chemistry</span>
+                                <span>94%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 94%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-elements">
+                    <div class="float-card">
+                        <div class="float-card-icon">🏆</div>
+                        <div class="float-card-text">Board Results</div>
+                        <div class="float-card-value">A1 Rate 91%</div>
+                    </div>
+                    <div class="float-card">
+                        <div class="float-card-icon">📈</div>
+                        <div class="float-card-text">Average Jump</div>
+                        <div class="float-card-value">30% Marks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-visual fade-in">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop" alt="Students in modern classroom at Apex School Karachi">
+                    </div>
+                    <div class="about-experience">
+                        <span class="about-experience-number">12+</span>
+                        <span class="about-experience-text">Years of<br>Excellence</span>
+                    </div>
+                </div>
+                <div class="about-content fade-in">
+                    <h2>Why Karachi Trusts Apex School</h2>
+                    <p>Established in 2013 in Model Colony, Apex School has become the gold standard for supplementary education in Karachi. We don't just prepare students for exams—we prepare them for life.</p>
+                    <p>Our faculty comprises experienced educators from Karachi's top institutions, including former board examiners and subject specialists with advanced degrees. We understand the Sindh Board, Federal Board, and Cambridge systems intimately.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">01</div>
+                            <div class="about-feature-text">
+                                <h4>Board-Aligned Curriculum</h4>
+                                <p>Every lesson mapped to Sindh Board, FBISE, and Cambridge O/A Level requirements. No wasted time, only targeted preparation.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">02</div>
+                            <div class="about-feature-text">
+                                <h4>Intimate Batch Sizes</h4>
+                                <p>Maximum 8 students per batch ensures every child receives individual attention while benefiting from peer learning.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">03</div>
+                            <div class="about-feature-text">
+                                <h4>Monthly Parent Briefings</h4>
+                                <p>Detailed progress reports with actionable insights. Parents never wonder where their child stands—we show them.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Our Programs</span>
+                <h2 class="section-title">Comprehensive Subject Mastery</h2>
+                <p class="section-desc">From Class 5 foundation building to Intermediate mastery, we support students at every stage of their academic journey in Karachi.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">📐</div>
+                    <h3>Mathematics</h3>
+                    <p>From basic arithmetic to advanced calculus and trigonometry. Our step-by-step methodology makes complex concepts intuitive and memorable.</p>
+                    <div class="service-tags">
+                        <span class="service-tag">Class 5-8</span>
+                        <span class="service-tag">Matric</span>
+                        <span class="service-tag">Inter</span>
+                    </div>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔬</div>
+                    <h3>Science Group</h3>
+                    <p>Physics, Chemistry, and Biology taught with practical demonstrations and real-world Karachi context. Perfect for pre-medical and engineering tracks.</p>
+                    <div class="service-tags">
+                        <span class="service-tag">Matric Science</span>
+                        <span class="service-tag">FSc Pre-Med</span>
+                        <span class="service-tag">FSc Pre-Eng</span>
+                    </div>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">✍️</div>
+                    <h3>English Language</h3>
+                    <p>Grammar mastery, comprehension skills, and essay writing. Essential for board exams and professional communication in Pakistan's corporate world.</p>
+                    <div class="service-tags">
+                        <span class="service-tag">Grammar</span>
+                        <span class="service-tag">Composition</span>
+                        <span class="service-tag">Board Prep</span>
+                    </div>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎯</div>
+                    <h3>Board Exam Intensive</h3>
+                    <p>Crash courses, past paper analysis, and examiner-style mock tests. Designed for maximum marks in minimum time before Sindh Board exams.</p>
+                    <div class="service-tags">
+                        <span class="service-tag">9th & 10th</span>
+                        <span class="service-tag">11th & 12th</span>
+                        <span class="service-tag">Supplementary</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Investment</span>
+                <h2 class="section-title">Transparent Pricing</h2>
+                <p class="section-desc">Quality education is an investment, not an expense. Choose the program that aligns with your child's ambitions and your family's goals.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card fade-in">
+                    <h3 class="pricing-name">Foundation</h3>
+                    <p class="pricing-desc">Perfect for younger students building core concepts</p>
+                    <div class="pricing-price">
+                        <span class="currency">PKR</span>
+                        <span class="amount">4,500</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">3 sessions per week</li>
+                        <li class="pricing-feature">Maximum 8 students</li>
+                        <li class="pricing-feature">Weekly assignments</li>
+                        <li class="pricing-feature">Monthly progress card</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="selectPlan('Foundation')">Get Started</button>
+                </div>
+                <div class="pricing-card featured fade-in">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3 class="pricing-name">Academic Pro</h3>
+                    <p class="pricing-desc">Comprehensive support for board exam students</p>
+                    <div class="pricing-price">
+                        <span class="currency">PKR</span>
+                        <span class="amount">7,500</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">5 sessions per week</li>
+                        <li class="pricing-feature">Small batch (max 6)</li>
+                        <li class="pricing-feature">Mock board exams included</li>
+                        <li class="pricing-feature">Fortnightly parent meetings</li>
+                        <li class="pricing-feature">WhatsApp doubt support</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="selectPlan('Academic Pro')">Get Started</button>
+                </div>
+                <div class="pricing-card fade-in">
+                    <h3 class="pricing-name">Elite One-to-One</h3>
+                    <p class="pricing-desc">Personalized mentoring for top achievers</p>
+                    <div class="pricing-price">
+                        <span class="currency">PKR</span>
+                        <span class="amount">12,000</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">Private individual sessions</li>
+                        <li class="pricing-feature">Custom study plan</li>
+                        <li class="pricing-feature">University guidance</li>
+                        <li class="pricing-feature">Priority scheduling</li>
+                        <li class="pricing-feature">Career counseling</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="selectPlan('Elite')">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Success Stories</span>
+                <h2 class="section-title">Results That Speak</h2>
+                <p class="section-desc">Don't just take our word for it. Here's what parents and students from Model Colony and surrounding areas say about their transformation at Apex.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">"My son was failing Mathematics in Class 9. After joining Apex, he not only passed but secured an A grade in his Matric board exams. The teachers here don't just teach—they transform mindsets."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">FK</div>
+                        <div class="testimonial-info">
+                            <h4>Farhan Khan</h4>
+                            <p>Parent of Matric Student, Malir</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">"The Physics teacher at Apex is exceptional. My daughter went from dreading the subject to scoring 92% in her FSc Part 1. The practical demonstrations make all the difference."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SA</div>
+                        <div class="testimonial-info">
+                            <h4>Samina Ahmed</h4>
+                            <p>Parent of FSc Student, Model Colony</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">"I was struggling with Chemistry and considering dropping Pre-Medical. The crash course at Apex changed everything. I scored 85% and got into Dow Medical College. Forever grateful."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">HR</div>
+                        <div class="testimonial-info">
+                            <h4>Hassan Rizvi</h4>
+                            <p>Former Student, now at DMC</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">"We tried two other tuition centers in Malir before finding Apex. The difference is the accountability—weekly tests, detailed feedback, and teachers who actually care about results."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">NS</div>
+                        <div class="testimonial-info">
+                            <h4>Nadia Siddiqui</h4>
+                            <p>Parent of Class 8 Student, Shah Faisal</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">"The WhatsApp support is a game-changer. Being able to send a question at 10 PM and get a response within minutes kept my momentum going during board preparation."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ZA</div>
+                        <div class="testimonial-info">
+                            <h4>Zara Ali</h4>
+                            <p>FSc Part 2 Student, Model Colony</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">"As a working mother in Karachi, the flexible evening timings and detailed monthly reports meant I could stay involved. I always knew exactly where my son stood academically."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">RJ</div>
+                        <div class="testimonial-info">
+                            <h4>Rabia Javed</h4>
+                            <p>Parent of Class 10 Student, Malir Cantt</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h2>Begin Your Child's Journey</h2>
+                    <p>Book a free assessment to discover your child's current academic level and receive a personalized improvement roadmap. No obligation, only honest guidance from Karachi's finest educators.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-method-icon">📍</div>
+                            <div class="contact-method-text">
+                                <h4>Visit Our Campus</h4>
+                                <p>W53M+5HJ, Unnamed Road<br>Model Colony Lasi Para, Karachi<br>Near Model Colony Park</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">📞</div>
+                            <div class="contact-method-text">
+                                <h4>Call Us Directly</h4>
+                                <p><a href="tel:03352220548">0335 2220548</a><br>Mon-Sat, 10am-9pm</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">✉️</div>
+                            <div class="contact-method-text">
+                                <h4>Email Us</h4>
+                                <p><a href="mailto:info@apexschool.com.pk">info@apexschool.com.pk</a><br>Response within 6 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/923352220548?text=Assalamu%20Alaikum%20Apex%20School%2C%20I%20would%20like%20to%20book%20a%20free%20assessment%20for%20my%20child." class="whatsapp-btn" target="_blank" rel="noopener">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+                <div class="contact-form-wrapper fade-in">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="parentName">Parent / Guardian Name</label>
+                            <input type="text" id="parentName" class="form-input" required placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="studentName">Student Name</label>
+                            <input type="text" id="studentName" class="form-input" required placeholder="Student's full name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" class="form-input" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" required placeholder="03XX XXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="classGroup">Current Class / Grade</label>
+                            <select id="classGroup" class="form-select" required>
+                                <option value="">Select class</option>
+                                <option value="class5">Class 5</option>
+                                <option value="class6">Class 6</option>
+                                <option value="class7">Class 7</option>
+                                <option value="class8">Class 8</option>
+                                <option value="class9">Class 9 (Matric Part 1)</option>
+                                <option value="class10">Class 10 (Matric Part 2)</option>
+                                <option value="class11">Class 11 (FSc Part 1)</option>
+                                <option value="class12">Class 12 (FSc Part 2)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="subjects">Subjects Interested In</label>
+                            <select id="subjects" class="form-select" required>
+                                <option value="">Select primary subject</option>
+                                <option value="maths">Mathematics</option>
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                                <option value="biology">Biology</option>
+                                <option value="english">English</option>
+                                <option value="multiple">Multiple Subjects</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Additional Information</label>
+                            <textarea id="message" class="form-textarea" placeholder="Tell us about your child's current marks, goals, or any specific requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Book Free Assessment</button>
+                    </form>
+                    <div class="form-success" id="formSuccess">
+                        ✅ Shukriya! We'll contact you within 24 hours to confirm your assessment timing.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">A</div>
+                        <div class="logo-text">Apex <span>School</span></div>
+                    </a>
+                    <p>Karachi's premier tuition center since 2013. Building confident, capable scholars who achieve their full potential in Model Colony and beyond.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="#services">Mathematics</a></li>
+                        <li><a href="#services">Physics & Chemistry</a></li>
+                        <li><a href="#services">Biology</a></li>
+                        <li><a href="#services">English</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#testimonials">Results</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#contact">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Apex School. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="WhatsApp">📱</a>
+                    <a href="#" aria-label="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+
+        // Navbar scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        };
+
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+        // Contact Form
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('.form-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+
+            setTimeout(() => {
+                contactForm.style.display = 'none';
+                formSuccess.classList.add('active');
+            }, 1500);
+        });
+
+
+        // Plan selection
+        function selectPlan(planName) {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            console.log('Selected plan:', planName);
+        }
+
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+
+        // Stagger animations
+        document.querySelectorAll('.service-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.12}s`;
+        });
+
+
+        document.querySelectorAll('.pricing-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.15}s`;
+        });
+
+
+        document.querySelectorAll('.testimonial-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
